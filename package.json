@@ -1,0 +1,22 @@
+{
+  "name": "ajeetlabs.github.io",
+  "version": "1.0.0",
+  "description": "ajeetlabs opensource project page ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajeetlabs/ajeetlabs.github.io.git"
+  },
+  "author": "ajeet kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajeetlabs/ajeetlabs.github.io/issues"
+  },
+  "homepage": "https://github.com/ajeetlabs/ajeetlabs.github.io#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  }
+}
