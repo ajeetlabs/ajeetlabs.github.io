@@ -1,0 +1,345 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens (Tailwind v4 @theme)
+--------------------------------------------------------------------------- */
+@theme {
+  --font-sans: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --color-ink: #000000;
+  --color-ink-2: #050505;
+  --color-surface: #001100;
+  --color-line: #003300;
+  --color-mist: #8fbc8f;
+  --color-brand: #00ff00;
+  --color-brand-2: #00cc00;
+  --color-accent: #00ff00;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: #a0d8a0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: var(--color-ink);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll progress bar
+--------------------------------------------------------------------------- */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--color-brand);
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+
+/* ---------------------------------------------------------------------------
+   Reusable component classes
+--------------------------------------------------------------------------- */
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-6;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-[var(--color-brand)] bg-[var(--color-brand)] px-6 py-3
+      text-sm font-bold text-[var(--color-ink)] transition-colors duration-200;
+  }
+
+  .btn-primary:hover {
+    @apply bg-transparent text-[var(--color-brand)];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-[var(--color-brand)] bg-transparent
+      px-6 py-3 text-sm font-bold text-[var(--color-brand)] transition-colors duration-200;
+  }
+
+  .btn-ghost:hover {
+    @apply bg-[var(--color-brand)] text-[var(--color-ink)];
+  }
+
+  .card {
+    @apply border-2 border-[var(--color-line)] bg-[var(--color-surface)] p-7 transition-colors duration-200;
+  }
+
+  .card:hover {
+    @apply border-[var(--color-brand)];
+  }
+
+  .eyebrow {
+    @apply mb-3 inline-block text-xs font-bold uppercase tracking-widest text-[var(--color-brand)];
+  }
+
+  .gradient-text {
+    @apply text-[var(--color-brand)];
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Blinking cursor
+--------------------------------------------------------------------------- */
+.terminal-cursor {
+  display: inline-block;
+  width: 12px;
+  height: 1em;
+  background-color: var(--color-brand);
+  vertical-align: bottom;
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ---------------------------------------------------------------------------
+   Section divider
+--------------------------------------------------------------------------- */
+.section-divider {
+  height: 1px;
+  background: var(--color-line);
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll-reveal animation
+--------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Process timeline connector
+--------------------------------------------------------------------------- */
+.process-grid {
+  position: relative;
+}
+
+.process-grid::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-line);
+  z-index: 0;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 1023px) {
+  .process-grid::before {
+    display: none;
+  }
+}
+
+.process-card {
+  position: relative;
+  z-index: 1;
+}
+
+.process-card::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 28px;
+  width: 6px;
+  height: 6px;
+  background: var(--color-brand);
+  opacity: 0;
+  transition: opacity 0.2s ease 0.2s;
+}
+
+.process-card.is-visible::before {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Work card effects
+--------------------------------------------------------------------------- */
+.work-card .card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 17, 0, 0.8);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+.work-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.work-card .card-link {
+  opacity: 0;
+  z-index: 2;
+  position: relative;
+}
+
+.work-card:hover .card-link {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Active nav link
+--------------------------------------------------------------------------- */
+.nav-link {
+  position: relative;
+}
+
+.nav-link.is-active {
+  color: var(--color-brand);
+  font-weight: bold;
+}
+
+.nav-link.is-active::before {
+  content: "> ";
+  color: var(--color-brand);
+  position: absolute;
+  left: -14px;
+}
+
+/* ---------------------------------------------------------------------------
+   Back-to-top button
+--------------------------------------------------------------------------- */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  background: var(--color-surface);
+  color: var(--color-brand);
+  border: 2px solid var(--color-brand);
+  display: grid;
+  place-items: center;
+  z-index: 50;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.back-to-top:hover {
+  background: var(--color-brand);
+  color: var(--color-ink);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Mockup device frames inside work cards
+--------------------------------------------------------------------------- */
+.mockup-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 1.5rem;
+}
+
+.mockup-browser {
+  width: 85%;
+  max-width: 280px;
+  background: var(--color-ink);
+  border: 2px solid var(--color-line);
+  overflow: hidden;
+}
+
+.mockup-browser__bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-line);
+}
+
+.mockup-browser__dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-line);
+}
+
+.mockup-browser__body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mockup-line {
+  height: 6px;
+  background: var(--color-line);
+}
+
+.mockup-line--accent {
+  background: var(--color-brand);
+}
+
+.mockup-phone {
+  width: 60px;
+  background: var(--color-ink);
+  border: 2px solid var(--color-line);
+  padding: 4px;
+  position: absolute;
+  right: 12%;
+  bottom: 15%;
+}
+
+.mockup-phone__notch {
+  width: 24px;
+  height: 4px;
+  background: var(--color-surface);
+  margin: 2px auto 4px;
+}
+
+.mockup-phone__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transition: none;
+  }
+  .terminal-cursor {
+    animation: none;
+  }
+}
