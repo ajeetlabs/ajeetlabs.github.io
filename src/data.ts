@@ -67,20 +67,28 @@ export const WORK: Work[] = [
     url: "https://hamarabokaro.in/",
   },
   {
-    title: "S5Indianews",
-    category: "News & Media",
-    blurb: "News platform with custom content management — delivering stories that matter.",
-    tags: ["WordPress", "CMS"],
-    mockup: "browser",
-    url: "https://s5indianews.com/",
-  },
-  {
     title: "Glowing Star Furniture",
     category: "Portfolio Website",
     blurb: "Structured dismantling and responsible scrap management solutions — a professional services portfolio.",
     tags: ["Web Design", "Portfolio"],
     mockup: "browser",
     url: "https://www.gsfscrap.com/",
+  },
+  {
+    title: "Shubhanjali Click",
+    category: "Portfolio Website",
+    blurb: "Photography studio showcase — a visual portfolio highlighting captured moments and services.",
+    tags: ["Laravel", "PHP", "MySQL", "Node.js"],
+    mockup: "browser",
+    url: "https://shubhanjaliclick.com/",
+  },
+  {
+    title: "Kaun Banega Lakhpati",
+    category: "Quiz & Gaming",
+    blurb: "Interactive quiz and rewards platform where players answer questions to win — a real-time gaming experience.",
+    tags: ["Node.js", "WebSockets", "PostgreSQL"],
+    mockup: "both",
+    url: "https://kaunbanegalakhpati.com/",
   },
 ];
 
