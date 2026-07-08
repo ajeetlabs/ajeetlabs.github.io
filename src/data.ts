@@ -75,6 +75,14 @@ export const WORK: Work[] = [
     url: "https://www.gsfscrap.com/",
   },
   {
+    title: "Astro Jyotis",
+    category: "Astrology Platform",
+    blurb: "Online astrology platform connecting users with astrologers for consultations and horoscope readings.",
+    tags: ["Web Design", "Portfolio"],
+    mockup: "browser",
+    url: "https://astrojyotis.com/",
+  },
+  {
     title: "Shubhanjali Click",
     category: "Portfolio Website",
     blurb: "Photography studio showcase — a visual portfolio highlighting captured moments and services.",
